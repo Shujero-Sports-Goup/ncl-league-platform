@@ -1,0 +1,10 @@
+.league-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--white);
+  border-radius: var(--radius);
+}
+
+.league-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(0, 64, 128, 0.1);
+}

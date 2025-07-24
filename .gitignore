@@ -1,0 +1,47 @@
+# Database configuration (contains sensitive info)
+db_connect.php
+
+# XAMPP/Local development files
+.htaccess
+
+# PHP temp files
+*.tmp
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Uploads directory (if it contains user uploads)
+uploads/*
+!uploads/.gitkeep
+
+# Cache files
+cache/
+temp/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Vendor dependencies (if using Composer)
+vendor/
+
+# Node modules (if using npm)
+node_modules/
+
+# Backup files
+*.bak
+*.backup

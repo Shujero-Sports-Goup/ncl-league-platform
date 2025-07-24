@@ -1,0 +1,105 @@
+/* 1. Base reset & typography */
+html, body {
+  margin: 0; padding: 0;
+  font-family: 'Inter', sans-serif;
+  color: #1f2937; background: #f9fafb;
+}
+h1,h2,h3,h4,h5,h6 { font-weight: 600; color: #111827; margin-bottom: .5rem; }
+
+/* 2. Colour palette */
+:root {
+  --primary: #6366F1;
+  --primary-dark: #4f46e5;
+  --secondary: #FBBF24;
+  --success: #10B981;
+  --danger:  #EF4444;
+  --info:    #0EA5E9;
+  --light:   #ffffff;
+  --dark:    #374151;
+}
+
+/* 3. Navbar */
+.navbar {
+  background: var(--primary);
+}
+.navbar .navbar-brand, .navbar-nav .nav-link {
+  color: var(--light) !important;
+}
+.navbar .nav-link:hover {
+  color: var(--secondary) !important;
+}
+
+/* 4. Cards */
+.card {
+  border: none; border-radius: .75rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+.card-header {
+  background: var(--primary);
+  color: var(--light);
+  font-weight: 600;
+  border-bottom: none;
+}
+
+/* 5. Buttons */
+.btn-primary {
+  background: var(--primary); border: none;
+}
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+.btn-accent {
+  background: var(--secondary); color: var(--dark);
+}
+.btn-accent:hover {
+  background: #F59E0B;
+  color: #1F2937;
+}
+
+/* 6. Forms & selects */
+.form-control, .form-select {
+  border-radius: .5rem;
+  border: 1px solid #d1d5db;
+}
+.form-label {
+  font-weight: 500;
+  color: #4b5563;
+}
+
+/* 7. Tables */
+.table {
+  background: var(--light);
+  border-radius: .5rem;
+  overflow: hidden;
+}
+.table thead {
+  background: var(--primary-dark);
+  color: var(--light);
+  text-transform: uppercase;
+  font-size: .85rem;
+}
+.table tbody tr:hover {
+  background: #eff6ff;
+}
+
+/* 8. Hero banners */
+.league-hero,
+.hero-banner-teams {
+  background: var(--primary-dark) url('/assets/img/pattern.svg') center/cover no-repeat;
+  color: var(--light);
+  padding: 4rem 1rem;
+}
+
+/* 9. Utilities */
+.shadow-soft {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+}
+.text-primary { color: var(--primary) !important; }
+.text-secondary { color: var(--secondary) !important; }
+.bg-light { background: #f9fafb !important; }
+
+/* 10. Responsive tweaks */
+@media (max-width: 768px) {
+  .card { margin: 1rem; }
+  .container { padding: 0 1rem; }
+}
