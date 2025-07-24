@@ -84,7 +84,10 @@ include('includes/header.php');
 ?>
 
 <section class="container py-5" style="max-width: 500px;">
-  <h2 class="text-center mb-4"> Login to NCL League Platform</h2>
+  <div class="text-center mb-4">
+    <img src="assets/images/nukta-logo.png" alt="Nukta Sports Management" style="height: 80px; background: rgba(30,64,255,0.1); padding: 10px; border-radius: 15px; margin-bottom: 20px;">
+    <h2>Login to League Management System</h2>
+  </div>
 
   <?php if ($error): ?>
     <div class="alert alert-danger"><?= $error ?></div>

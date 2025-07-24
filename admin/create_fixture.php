@@ -86,7 +86,7 @@ include('../includes/navbar.php');
 <style>
   /* Custom overrides */
   .card-custom { max-width: 700px; margin: auto; }
-  .btn-accent { background: #6366F1; color: #fff; }
+  .btn-accent { background: #0000ff; color: #fff; }
   .btn-accent:disabled { opacity: .7; }
 </style>
 

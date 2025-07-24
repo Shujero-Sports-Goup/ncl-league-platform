@@ -1,11 +1,11 @@
 <?php
-// Database configuration template
+// Nukta League Management System - Database configuration template
 // Copy this file to db_connect.php and update with your actual database credentials
 
 $servername = "localhost";
 $username = "your_username";      // Replace with your database username
 $password = "your_password";      // Replace with your database password
-$dbname = "your_database_name";   // Replace with your database name
+$dbname = "nukta_league_system";  // Replace with your database name
 
 try {
     $conn = new mysqli($servername, $username, $password, $dbname);

@@ -1,7 +1,7 @@
 -- Audit Trail Security System
 -- Run this after your main schema.sql
 
-USE ncl_league_system;
+USE nukta_league_system;
 
 -- 1. Security Audit Log Table
 CREATE TABLE security_audit_log (

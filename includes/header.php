@@ -9,18 +9,18 @@ require_once(__DIR__ . '/../db_connect.php');
   <!-- Meta Essentials -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="NCL League Platform – Fixtures, Teams, Standings & Updates from Kenya's grassroots basketball system." />
-  <meta name="author" content="NCL League • James Ngunjiri" />
+  <meta name="description" content="League Management System – Professional sports league management powered by Nukta Sports Solutions." />
+  <meta name="author" content="Nukta Sports Management • Shujero Sports Group" />
   <meta name="robots" content="index, follow" />
 
   <!-- Favicon (Optional) -->
-  <link rel="icon" href="/ncl-league-platform/assets/images/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/ncl-league-platform/assets/images/nukta-logo.png" type="image/png" />
 
   <!-- Page Title -->
-  <title>NCL League Platform</title>
+  <title>League Management System | Nukta</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- CSS Frameworks -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
@@ -34,7 +34,7 @@ require_once(__DIR__ . '/../db_connect.php');
 
   <!-- Custom Styles -->
   <link rel="stylesheet" href="/ncl-league-platform/assets/css/style.css" />
-  <link rel="stylesheet" href="/ncl-league-platform/assets/css/ncl-theme.css" />
+  <link rel="stylesheet" href="/ncl-league-platform/assets/css/nukta-theme.css" />
   
 
   <!-- Responsive Tweaks -->

@@ -1,5 +1,7 @@
-NCL League System
-A full-stack web platform that empowers local basketball leagues to manage teams, fixtures, players, and live results—while delivering a sleek, responsive frontend experience for fans and stakeholders.
+NUKTA LEAGUE MANAGEMENT SYSTEM
+A comprehensive web platform powered by Nukta that empowers sports leagues to manage teams, fixtures, players, and live results—while delivering a sleek, responsive frontend experience for fans and stakeholders.
+
+🏆 Powered by Nukta Sports Management Solutions
 
 🚀 Features
 🔐 Secure role-based login (Admin, Manager, Referee)
@@ -23,33 +25,35 @@ A full-stack web platform that empowers local basketball leagues to manage teams
 ├── referee/        → Score submission interface
 ├── leagues/        → Public league portal (fixtures, teams, standings)
 ├── includes/       → auth.php, navbar.php, header/footer components
-├── assets/         → CSS, JS, images (Bootstrap + custom styling)
+├── assets/         → CSS, JS, images (Bootstrap + Nukta styling)
 ├── api/            → JSON data endpoints (e.g. fetch_results.php)
 ├── db_connect.php
+├── nukta_setup_database.php
 ├── login.php / logout.php / index.php
-├── schema.sql
+├── sql/schema.sql
+├── NUKTA/          → Nukta-specific documentation and forms
 └── README.md
 🛠️ Setup Instructions
 Create DB
 
-Import schema.sql via phpMyAdmin or CLI
+Import sql/schema.sql via phpMyAdmin or CLI, or run nukta_setup_database.php
 
 Includes seed leagues + an admin user
 
 Update DB Credentials
 
-db_connect.php:
+db_connect.php (copy from db_connect.example.php):
 
 php
 $host = 'localhost';
-$dbname = 'ncl_league_system';
+$dbname = 'nukta_league_system';
 $username = 'root';
 $password = '';
 Run Locally
 
 Recommended: XAMPP / MAMP
 
-Visit http://localhost/ncl/index.php
+Visit http://localhost/nukta-league-platform/index.php
 
 Default Login
 

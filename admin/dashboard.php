@@ -140,52 +140,65 @@ include('../includes/header.php');
 include('../includes/navbar.php');
 ?>
 
-<section class="container-fluid py-4">
+<style>
+body {
+  background-color: #f8f9fa !important;
+  color: #333 !important;
+}
+</style>
+
+<section class="admin-dashboard-bg">
+<div class="container-fluid py-4">
   <!-- Super Admin Header -->
   <div class="row mb-4">
     <div class="col-12">
       <div class="card admin-header text-white shadow-lg">
-        <div class="card-body text-center py-4">
-          <h1 class="display-5 fw-bold mb-2"> Super Admin Command Center</h1>
-          <p class="lead mb-0">Complete control over the NCL League Platform</p>
-          <div class="row mt-3">
-            <div class="col-md-3">
-              <div class="d-flex justify-content-center align-items-center">
-                <i class="fas fa-users fa-2x me-2"></i>
-                <div>
-                  <h5 class="mb-0"><?= $totalUsers ?></h5>
-                  <small>Total Users</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="d-flex justify-content-center align-items-center">
-                <i class="fas fa-shield-alt fa-2x me-2"></i>
-                <div>
-                  <h5 class="mb-0"><?= $totalTeams ?></h5>
-                  <small>Total Teams</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="d-flex justify-content-center align-items-center">
-                <i class="fas fa-calendar fa-2x me-2"></i>
-                <div>
-                  <h5 class="mb-0"><?= $totalFixtures ?></h5>
-                  <small>Total Fixtures</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="d-flex justify-content-center align-items-center">
-                <i class="fas fa-running fa-2x me-2"></i>
-                <div>
-                  <h5 class="mb-0"><?= $totalPlayers ?></h5>
-                  <small>Total Players</small>
-                </div>
-              </div>
-            </div>
+        <div class="card-body text-center py-5">
+          <div class="mb-3">
+            <img src="../assets/images/nukta-logo.png" alt="Nukta Sports Management" style="height: 80px; background: rgba(255,255,255,0.95); padding: 12px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
           </div>
+          <h1 class="display-4 fw-bold mb-3">Nukta Admin Command Center</h1>
+          <p class="lead mb-0">Complete control over the Nukta League Management System</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics Cards -->
+  <div class="row mb-4 g-4">
+    <div class="col-md-3">
+      <div class="card admin-stats-card">
+        <div class="card-body text-center">
+          <i class="fas fa-users admin-action-icon mb-3"></i>
+          <div class="admin-stats-number"><?= $totalUsers ?></div>
+          <div class="admin-stats-label">Total Users</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card admin-stats-card">
+        <div class="card-body text-center">
+          <i class="fas fa-shield-alt admin-action-icon mb-3"></i>
+          <div class="admin-stats-number"><?= $totalTeams ?></div>
+          <div class="admin-stats-label">Total Teams</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card admin-stats-card">
+        <div class="card-body text-center">
+          <i class="fas fa-calendar admin-action-icon mb-3"></i>
+          <div class="admin-stats-number"><?= $totalFixtures ?></div>
+          <div class="admin-stats-label">Total Fixtures</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card admin-stats-card">
+        <div class="card-body text-center">
+          <i class="fas fa-users-cog admin-action-icon mb-3"></i>
+          <div class="admin-stats-number"><?= $totalPlayers ?></div>
+          <div class="admin-stats-label">Total Players</div>
         </div>
       </div>
     </div>
@@ -195,7 +208,7 @@ include('../includes/navbar.php');
   <div class="row mb-4">
     <div class="col-12">
       <div class="card shadow-sm border-0">
-        <div class="card-header bg-dark text-white">
+        <div class="card-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent-hover) 100%); color: white;">
           <h5 class="mb-0">🔍 Universal Search & Filter</h5>
         </div>
         <div class="card-body bg-light">
@@ -248,62 +261,119 @@ include('../includes/navbar.php');
   <div class="row mb-4">
     <div class="col-12">
       <div class="card shadow-sm border-0">
-        <div class="card-header bg-success text-white">
+        <div class="card-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent-hover) 100%); color: white;">
           <h5 class="mb-0">⚡ Quick Actions</h5>
         </div>
-        <div class="card-body">
-          <div class="row g-3">
+        <div class="card-body bg-white">
+          <div class="row g-4">
             <div class="col-md-2 col-sm-4 col-6">
-              <a href="<?= $base ?>/admin/add_team.php" class="btn btn-outline-primary w-100 text-center py-3">
-                <div class="display-6">➕</div>
-                <small>Add Team</small>
-              </a>
-            </div>
-            <div class="col-md-2 col-sm-4 col-6">
-              <a href="<?= $base ?>/admin/create_fixture.php" class="btn btn-outline-success w-100 text-center py-3">
-                <div class="display-6">📅</div>
-                <small>Schedule Match</small>
-              </a>
+              <div class="card admin-action-card">
+                <div class="card-body">
+                  <i class="fas fa-plus admin-action-icon"></i>
+                  <h6 class="admin-action-title">Add Team</h6>
+                  <a href="<?= $base ?>/admin/add_team.php" class="btn btn-primary btn-sm">Go</a>
+                </div>
+              </div>
             </div>
             <div class="col-md-2 col-sm-4 col-6">
-              <a href="<?= $base ?>/admin/manage_users.php" class="btn btn-outline-warning w-100 text-center py-3">
-                <div class="display-6">👤</div>
-                <small>Manage Users</small>
-              </a>
+              <div class="card admin-action-card">
+                <div class="card-body">
+                  <i class="fas fa-calendar-plus admin-action-icon"></i>
+                  <h6 class="admin-action-title">Schedule Match</h6>
+                  <a href="<?= $base ?>/admin/create_fixture.php" class="btn btn-primary btn-sm">Go</a>
+                </div>
+              </div>
             </div>
             <div class="col-md-2 col-sm-4 col-6">
-              <a href="<?= $base ?>/admin/manage_leagues.php" class="btn btn-outline-info w-100 text-center py-3">
-                <div class="display-6">🏆</div>
-                <small>Manage Leagues</small>
-              </a>
+              <div class="card admin-action-card">
+                <div class="card-body">
+                  <i class="fas fa-users-cog admin-action-icon"></i>
+                  <h6 class="admin-action-title">Manage Users</h6>
+                  <a href="<?= $base ?>/admin/manage_users.php" class="btn btn-primary btn-sm">Go</a>
+                </div>
+              </div>
             </div>
             <div class="col-md-2 col-sm-4 col-6">
-              <a href="<?= $base ?>/admin/security_dashboard.php" class="btn btn-outline-danger w-100 text-center py-3">
-                <div class="display-6">�️</div>
-                <small>Security Center</small>
-              </a>
+              <div class="card admin-action-card">
+                <div class="card-body">
+                  <i class="fas fa-trophy admin-action-icon"></i>
+                  <h6 class="admin-action-title">Manage Leagues</h6>
+                  <a href="<?= $base ?>/admin/manage_leagues.php" class="btn btn-primary btn-sm">Go</a>
+                </div>
+              </div>
             </div>
             <div class="col-md-2 col-sm-4 col-6">
-              <a href="<?= $base ?>/admin/standings_manager.php" class="btn btn-outline-primary w-100 text-center py-3">
-                <div class="display-6">📊</div>
-                <small>Standings Manager</small>
-              </a>
+              <div class="card admin-action-card">
+                <div class="card-body">
+                  <i class="fas fa-shield-alt admin-action-icon"></i>
+                  <h6 class="admin-action-title">Security Center</h6>
+                  <a href="<?= $base ?>/admin/security_dashboard.php" class="btn btn-primary btn-sm">Go</a>
+                </div>
+              </div>
             </div>
             <div class="col-md-2 col-sm-4 col-6">
-              <a href="<?= $base ?>/admin/ncl_registration_manager.php" class="btn btn-outline-warning w-100 text-center py-3">
-                <div class="display-6">📝</div>
-                <small>NCL Registration</small>
-              </a>
+              <div class="card admin-action-card">
+                <div class="card-body">
+                  <i class="fas fa-chart-bar admin-action-icon"></i>
+                  <h6 class="admin-action-title">Standings</h6>
+                  <a href="<?= $base ?>/admin/standings_manager.php" class="btn btn-primary btn-sm">Go</a>
+                </div>
+              </div>
             </div>
-            <div class="col-6 col-md-3">
-              <a href="manage_fixtures.php" class="btn btn-outline-primary w-100">
-                📅 Manage Fixtures
-              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Actions -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow-sm border-0">
+        <div class="card-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent-hover) 100%); color: white;">
+          <h5 class="mb-0">🎯 Management Tools</h5>
+        </div>
+        <div class="card-body bg-white">
+          <div class="row g-4">
+            <div class="col-md-3">
+              <div class="card admin-action-card">
+                <div class="card-body">
+                  <i class="fas fa-file-alt admin-action-icon"></i>
+                  <h6 class="admin-action-title">Registration</h6>
+                  <p class="admin-action-description">Manage team registrations</p>
+                  <a href="<?= $base ?>/admin/nukta_registration_manager.php" class="btn btn-primary">Access</a>
+                </div>
+              </div>
             </div>
-            <div class="col-6 col-md-3">
-              <a href="fixture_manager.php" class="btn btn-outline-success w-100">
-                🎯 Fixture Manager
-              </a>
+            <div class="col-md-3">
+              <div class="card admin-action-card">
+                <div class="card-body">
+                  <i class="fas fa-calendar admin-action-icon"></i>
+                  <h6 class="admin-action-title">Fixtures</h6>
+                  <p class="admin-action-description">Manage all fixtures</p>
+                  <a href="manage_fixtures.php" class="btn btn-primary">Access</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card admin-action-card">
+                <div class="card-body">
+                  <i class="fas fa-cogs admin-action-icon"></i>
+                  <h6 class="admin-action-title">Fixture Manager</h6>
+                  <p class="admin-action-description">Advanced fixture tools</p>
+                  <a href="fixture_manager.php" class="btn btn-primary">Access</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card admin-action-card">
+                <div class="card-body">
+                  <i class="fas fa-chart-line admin-action-icon"></i>
+                  <h6 class="admin-action-title">Analytics</h6>
+                  <p class="admin-action-description">View system analytics</p>
+                  <a href="#" class="btn btn-primary">Coming Soon</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -315,14 +385,14 @@ include('../includes/navbar.php');
   <?php if ($searchTerm && !empty($searchResults)): ?>
   <div class="row mb-4">
     <div class="col-12">
-      <div class="card shadow-sm">
-        <div class="card-header bg-success text-white">
+      <div class="card shadow-sm border-0">
+        <div class="card-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent-hover) 100%); color: white;">
           <h5 class="mb-0">🎯 Search Results (<?= count($searchResults) ?> found)</h5>
         </div>
-        <div class="card-body p-0">
+        <div class="card-body p-0 bg-white">
           <div class="table-responsive">
             <table class="table table-hover mb-0 search-results-table">
-              <thead class="table-dark">
+              <thead style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent-hover) 100%); color: white;">
                 <tr>
                   <th width="10%">Type</th>
                   <th width="25%">Name/Title</th>
@@ -775,6 +845,7 @@ $topStandings = getLeagueStandings($conn, $leagueId, 5);
       </div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- Player Detail Modal -->

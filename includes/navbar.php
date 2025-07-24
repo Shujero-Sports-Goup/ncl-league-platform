@@ -3,14 +3,14 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 require_once(__DIR__ . '/../db_connect.php');
 
 // Fetch dynamic league abbreviation
-$leagueName = 'NCL League'; // Default value
+$leagueName = 'Nukta League Management'; // Default value
 if (!empty($_SESSION['league_id'])) {
   $stmt = $conn->prepare("SELECT abbreviation FROM leagues WHERE league_id = ?");
   $stmt->bind_param("i", $_SESSION['league_id']);
   $stmt->execute();
   $stmt->bind_result($abbr);
   if ($stmt->fetch()) {
-    $leagueName = htmlspecialchars($abbr) . ' League';
+    $leagueName = htmlspecialchars($abbr) . ' | Nukta';
   }
   $stmt->close();
 }
@@ -19,8 +19,8 @@ if (!empty($_SESSION['league_id'])) {
   <div class="container-fluid px-3 py-2 d-flex align-items-center justify-content-between flex-wrap">
 
     <!-- Branding -->
-    <a class="navbar-brand text-accent fw-bold fs-5" href="/ncl-league-platform/index.php">
-      <?= $leagueName ?>
+    <a class="navbar-brand d-flex align-items-center" href="/ncl-league-platform/index.php">
+      <img src="/ncl-league-platform/assets/images/nukta-logo.png" alt="Nukta" style="height: 35px; background: white; padding: 4px; border-radius: 8px;">
     </a>
 
     <!-- Mobile Toggle -->
@@ -61,6 +61,7 @@ if (!empty($_SESSION['league_id'])) {
           </span>
           <a class="btn btn-sm btn-outline-light" href="/ncl-league-platform/logout.php">Logout</a>
         <?php else: ?>
+          <a class="btn btn-sm btn-outline-light me-2" href="mailto:info@nukta.pro">Contact Us</a>
           <a class="btn btn-sm btn-accent" href="/ncl-league-platform/login.php">Login</a>
         <?php endif; ?>
       </div>

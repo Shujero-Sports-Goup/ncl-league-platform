@@ -184,7 +184,7 @@ include(__DIR__ . '/../includes/navbar.php');
                           <?php else: ?>
                             <div class="team-avatar mb-2 shadow rounded-circle
                                         d-flex align-items-center justify-content-center text-white fw-bold"
-                                 style="width:80px; height:80px; background:#6c757d; font-size:1.2rem;">
+                                 style="width:80px; height:80px; background:#0000ff; font-size:1.2rem;">
                               <?= $initials ?>
                             </div>
                           <?php endif; ?>

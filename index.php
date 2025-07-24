@@ -26,18 +26,18 @@ $leagues = $conn->query("
 >
   <div class="container py-5">
     <h1
-      class="display-3 fw-bold mb-3 text-shadow"
+      class="display-2 fw-bold mb-3"
       data-aos="fade-down"
       data-aos-delay="200"
     >
-      Powering Nairobi County League & Women Empowerment League.
+      League Management System
     </h1>
     <p
-      class="lead mb-4"
+      class="lead mb-4 fs-4"
       data-aos="fade-up"
       data-aos-delay="400"
     >
-      From the heart of the city to the soul of the court — NCL and WEL are redefining basketball excellence across Kenya.
+      Professional sports league management powered by Nukta. Streamlining competitions with modern technology and innovative solutions.
     </p>
     <div
       class="d-flex flex-wrap justify-content-center gap-3"
@@ -45,7 +45,7 @@ $leagues = $conn->query("
       data-aos-delay="600"
     >
       <a href="#leagues" class="btn btn-accent btn-lg px-4">Explore Our Leagues</a>
-      <a href="leagues/standings.php" class="btn btn-outline-light btn-lg px-4">View Standings</a>
+      <a href="leagues/standings.php" class="btn btn-outline-primary btn-lg px-4" style="border-color: #0000ff; color: #0000ff;">View Standings</a>
     </div>
   </div>
 </section>
@@ -70,7 +70,7 @@ $leagues = $conn->query("
     <?php
     $animations = ['fade-up', 'fade-up', 'fade-up', 'fade-up'];
     $colors = [
-      'NCL' => '#094421',
+      'NCL' => '#0000ff',
       'WEL' => '#DF2A57', 
       'FSL' => '#FFA908',
       'YBL' => '#462022',

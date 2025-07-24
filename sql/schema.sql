@@ -1,7 +1,7 @@
 -- Reset and create database
-DROP DATABASE IF EXISTS ncl_league_system;
-CREATE DATABASE ncl_league_system;
-USE ncl_league_system;
+DROP DATABASE IF EXISTS nukta_league_system;
+CREATE DATABASE nukta_league_system;
+USE nukta_league_system;
 
 -- 1. Leagues Table
 CREATE TABLE leagues (

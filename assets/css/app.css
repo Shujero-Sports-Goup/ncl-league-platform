@@ -8,14 +8,14 @@ h1,h2,h3,h4,h5,h6 { font-weight: 600; color: #111827; margin-bottom: .5rem; }
 
 /* 2. Colour palette */
 :root {
-  --primary: #6366F1;
-  --primary-dark: #4f46e5;
-  --secondary: #FBBF24;
+  --primary: #0000ff;
+  --primary-dark: #0000cc;
+  --secondary: #ffffff;
   --success: #10B981;
   --danger:  #EF4444;
-  --info:    #0EA5E9;
+  --info:    #0000ff;
   --light:   #ffffff;
-  --dark:    #374151;
+  --dark:    #000000;
 }
 
 /* 3. Navbar */
@@ -26,7 +26,7 @@ h1,h2,h3,h4,h5,h6 { font-weight: 600; color: #111827; margin-bottom: .5rem; }
   color: var(--light) !important;
 }
 .navbar .nav-link:hover {
-  color: var(--secondary) !important;
+  color: #ffffff !important;
 }
 
 /* 4. Cards */

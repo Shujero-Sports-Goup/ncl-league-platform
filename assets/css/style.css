@@ -1,10 +1,131 @@
 .league-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: var(--white);
+  transition: all 0.3s ease;
+  background-color: var(--background);
   border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
 .league-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 16px rgba(0, 64, 128, 0.1);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+
+/* Modern League Card Styling */
+.league-card .card-body {
+  padding: 2rem;
+}
+
+.league-card h5 {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.league-card p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Avatar styling for teams without logos */
+.team-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Modern table styling */
+.table-modern {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.table-modern th {
+  background-color: var(--card-bg);
+  font-weight: 600;
+  color: var(--text);
+  border: none;
+  padding: 1rem;
+}
+
+.table-modern td {
+  border: none;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.table-modern tbody tr:hover {
+  background-color: rgba(0, 0, 255, 0.05);
+}
+
+/* Modern form styling */
+.form-control {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 255, 0.1);
+}
+
+/* Badge styling */
+.badge {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+}
+
+.badge-primary {
+  background: var(--accent);
+  color: white;
+}
+
+/* Alert styling */
+.alert {
+  border-radius: var(--radius);
+  border: none;
+  box-shadow: var(--shadow);
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.alert-info {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  color: white;
+}
+
+/* Nukta Brand Colors */
+.text-nukta {
+  color: #0000ff !important;
+}
+
+.bg-nukta {
+  background-color: #0000ff !important;
+}
+
+.border-nukta {
+  border-color: #0000ff !important;
 }

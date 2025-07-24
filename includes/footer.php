@@ -1,47 +1,66 @@
-</div> <!-- End .container -->
+</div>
+<!-- End .container -->
 
-<footer class="footer bg-primary text-light mt-5 pt-5 pb-3">
+<footer class="footer bg-dark text-light mt-5 pt-5 pb-3" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%) !important;">
   <div class="container">
     <div class="row g-4">
 
       <!-- About -->
-      <div class="col-md-5">
-        <h4 class="fw-bold text-accent mb-3">NCL League Platform</h4>
-        <p class="small mb-3">
-          Where structure meets spirit. NCL is building pathways for athletes, fans, and futures through a league system that speaks your language—basketball.
+      <div class="col-md-4">
+        <div class="d-flex align-items-center mb-3">
+          <img src="/ncl-league-platform/assets/images/nukta-logo.png" alt="Nukta" style="height: 40px; margin-right: 15px; background: white; padding: 5px; border-radius: 8px;">
+          <h4 class="fw-bold text-white mb-0">Nukta League Management</h4>
+        </div>
+        <p class="small mb-3 text-light" style="opacity: 0.9;">
+          Professional sports league management powered by Nukta Sports Solutions. Part of the Nukta ecosystem transforming African sports.
         </p>
         <div class="d-flex gap-3 fs-5">
-          <a href="#"><i class="fab fa-facebook-f text-light"></i></a>
-          <a href="#"><i class="fab fa-x-twitter text-light"></i></a>
-          <a href="https://www.instagram.com/nairobicountyleague/?__pwa=1#" target="_blank"><i class="fab fa-instagram text-light"></i></a>
-          <a href="#"><i class="fab fa-youtube text-light"></i></a>
+          <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-light"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/nairobicountyleague/?__pwa=1#" target="_blank" class="text-light"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-light"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="col-md-4">
+        <h5 class="fw-semibold text-white mb-3">Contact Information</h5>
+        <div class="small text-light" style="opacity: 0.9;">
+          <div class="mb-3">
+            <i class="fas fa-map-marker-alt text-primary me-2"></i>
+            <strong>Location</strong><br>
+            <span class="ms-3">Fortis Suites, 7th Floor, Rm 708</span>
+          </div>
+          <div class="mb-3">
+            <i class="fas fa-envelope text-primary me-2"></i>
+            <strong>Email</strong><br>
+            <a href="mailto:admin@nukta.pro" class="text-primary ms-3">admin@nukta.pro</a>
+          </div>
+          <div class="mb-3">
+            <i class="fas fa-phone text-primary me-2"></i>
+            <strong>Phone</strong><br>
+            <a href="tel:+254113056293" class="text-primary ms-3">+254 113 056 293</a>
+          </div>
         </div>
       </div>
 
       <!-- Quick Links -->
       <div class="col-md-4">
-        <h5 class="fw-semibold text-accent mb-3">Quick Links</h5>
-        <ul class="list-unstyled small">
-          <li><a class="text-light text-decoration-none" href="/ncl-league-platform/leagues/fixtures.php"> Fixtures</a></li>
-          <li><a class="text-light text-decoration-none" href="/ncl-league-platform/leagues/standings.php"> Standings</a></li>
-          <li><a class="text-light text-decoration-none" href="/ncl-league-platform/leagues/teams.php"> Teams</a></li>
-          <li><a class="text-light text-decoration-none" href="#">ℹ About Us</a></li>
+        <h5 class="fw-semibold text-white mb-3">Quick Links</h5>
+        <ul class="list-unstyled small text-light" style="opacity: 0.9;">
+          <li class="mb-2"><a class="text-light text-decoration-none" href="/ncl-league-platform/leagues/fixtures.php"><i class="fas fa-calendar-alt me-2"></i>Fixtures</a></li>
+          <li class="mb-2"><a class="text-light text-decoration-none" href="/ncl-league-platform/leagues/standings.php"><i class="fas fa-trophy me-2"></i>Standings</a></li>
+          <li class="mb-2"><a class="text-light text-decoration-none" href="/ncl-league-platform/leagues/teams.php"><i class="fas fa-users me-2"></i>Teams</a></li>
+          <li class="mb-2"><a class="text-primary text-decoration-none" href="https://nukta.pro" target="_blank"><i class="fas fa-external-link-alt me-2"></i>Visit Nukta.pro</a></li>
         </ul>
-      </div>
-
-      <!-- Contact -->
-      <div class="col-md-3">
-        <h5 class="fw-semibold text-accent mb-3">Contact Us</h5>
-        <p class="small mb-1">📍 Nairobi, Kenya</p>
-        <p class="small mb-1"><a href="mailto:info@nclleague.com" class="text-light text-decoration-none">✉️ info@nclleague.com</a></p>
-        <p class="small">📞 +254 711 321691</p>
       </div>
     </div>
 
-    <hr class="border-accent mt-4" />
-
-    <div class="text-center small mt-3 text-light">
-      © <?= date('Y') ?> NCL League. All rights reserved. Powered by <strong>James Ngunjiri</strong>.
+    <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.2);">
+    
+    <div class="text-center small text-light" style="opacity: 0.8;">
+      © <?= date('Y') ?> Nukta League Management System. All rights reserved.<br>
+      A product of <a href="https://nukta.pro" target="_blank" class="text-primary">Nukta Sports Solutions</a> | Powered by <strong>Shujero Sports Group</strong>
     </div>
   </div>
 </footer>

@@ -1,0 +1,836 @@
+/* 🎨 NUKTA LEAGUE MANAGEMENT SYSTEM | Powered by Nukta */
+/* Author: Nukta Sports Management */
+/* Version: 2.0 - Polished & Optimized */
+
+/* =======================
+   Root Variables & Bootstrap Overrides
+   ======================= */
+:root {
+  --primary: #1E40FF;
+  --secondary: #2d2d2d;
+  --accent: #1E40FF;
+  --accent-hover: #1632CC;
+  --background: #ffffff;
+  --card-bg: #f8fafc;
+  --dark-bg: #0a0a0a;
+  --text: #1a1a1a;
+  --text-light: #6b7280;
+  --text-muted: #9ca3af;
+  --border: #e5e7eb;
+  --radius: 12px;
+  --font-main: 'Inter', 'Segoe UI', sans-serif;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  --bs-body-bg: var(--background);
+  --bs-body-color: var(--text);
+  --bs-primary: var(--accent);
+  --bs-secondary: var(--secondary);
+  --bs-font-sans-serif: var(--font-main);
+}
+
+/* =======================
+   Base Typography & Links
+   ======================= */
+body {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* =======================
+   Navbar
+   ======================= */
+.navbar {
+  background-color: var(--primary) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 10px rgba(30, 64, 255, 0.1);
+}
+
+.navbar-brand {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  padding: 8px 16px !important;
+  margin: 0 4px;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* =======================
+   Hero Section
+   ======================= */
+.hero,
+.hero-section {
+  background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(245,248,255,0.95) 100%),
+              url('/ncl-league-platform/assets/images/nukta-logo.png') center/300px no-repeat;
+  background-position: center 25%, center;
+  color: #0000ff;
+  padding: 8rem 1.5rem 4rem;
+  border-radius: var(--radius);
+  text-align: center;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before,
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/ncl-league-platform/assets/images/nukta-logo.png') center/350px no-repeat;
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.hero > *,
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero img,
+.hero-section img {
+  display: none;
+}
+
+.hero h1,
+.hero-section h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #0000ff;
+  text-shadow: 0 2px 8px rgba(0,0,255,0.15);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.hero p,
+.hero-section p {
+  font-size: 1.4rem;
+  color: #0000ff;
+  opacity: 0.85;
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =======================
+   Buttons
+   ======================= */
+.btn {
+  font-weight: 600;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-sm {
+  padding: 8px 20px;
+  font-size: 0.875rem;
+  border-radius: 20px;
+}
+
+.btn-lg {
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+}
+
+.btn-accent,
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  color: #ffffff !important;
+  border: none;
+  box-shadow: 0 4px 14px rgba(30, 64, 255, 0.25);
+}
+
+.btn-accent:hover,
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 100%);
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 64, 255, 0.35);
+}
+
+.btn-outline-accent,
+.btn-outline-primary {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
+
+.btn-outline-accent:hover,
+.btn-outline-primary:hover {
+  background: var(--accent);
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(30, 64, 255, 0.25);
+}
+
+.btn-outline-light {
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  background: transparent;
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: #ffffff;
+  border: none;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #ffc107 0%, #ffb400 100%);
+  color: #212529;
+  border: none;
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, #ffb400 0%, #ffc107 100%);
+  color: #212529;
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+  color: #ffffff;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #e74c3c 0%, #dc3545 100%);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* =======================
+   Cards & Components
+   ======================= */
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background-color: var(--background);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-hover) 100%);
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: none;
+}
+
+.card-title {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.25rem;
+  border-bottom: 2px dashed rgba(30, 64, 255, 0.1);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+  background: linear-gradient(135deg, var(--card-bg) 0%, #ffffff 100%);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.dashboard-icon {
+  font-size: 3rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+/* League Cards */
+.league-card {
+  background: linear-gradient(135deg, #ffffff 0%, var(--card-bg) 100%);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.league-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.league-card-ncl {
+  background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+  border-top: 4px solid var(--primary);
+}
+
+.league-card-wel {
+  background: linear-gradient(135deg, #fff0f8 0%, #ffffff 100%);
+  border-top: 4px solid #d63384;
+}
+
+.league-card-kids {
+  background: linear-gradient(135deg, #fffbe6 0%, #ffffff 100%);
+  border-top: 4px solid #ffb400;
+}
+
+.league-card-ybl {
+  background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+  border-top: 4px solid #00bcd4;
+}
+
+/* Mission Cards */
+.mission-card {
+  background: linear-gradient(135deg, #ffffff 0%, var(--card-bg) 100%);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.mission-icon {
+  font-size: 3rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.mission-heading {
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.mission-text {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* =======================
+   Tables
+   ======================= */
+.table {
+  background-color: #ffffff;
+  color: var(--text);
+  font-size: 0.95rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.table th {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.875rem;
+  padding: 1rem 0.75rem;
+  border: none;
+}
+
+.table td {
+  padding: 0.875rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(30, 64, 255, 0.05);
+  transition: background-color 0.2s ease;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(248, 250, 252, 0.8);
+}
+
+/* Standings Table */
+.table-standings {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  font-size: 0.9rem;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-standings thead th {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  color: #ffffff;
+  font-size: 0.8rem;
+  letter-spacing: 0.6px;
+  padding: 0.875rem 0.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.table-standings tbody tr:nth-child(odd) {
+  background-color: #f8fafc;
+}
+
+.table-standings tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.table-standings tbody tr:hover {
+  background-color: rgba(30, 64, 255, 0.08);
+  transition: background-color 0.2s ease;
+}
+
+.table-standings tbody td {
+  padding: 0.75rem 0.5rem;
+  color: var(--text);
+  text-align: center;
+  font-weight: 500;
+}
+
+.table-standings tbody td:first-child {
+  font-weight: 700;
+  color: var(--primary);
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Table Buttons */
+.table .btn {
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* =======================
+   Forms & Inputs
+   ======================= */
+.form-control {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+}
+
+.form-control:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.25rem rgba(30, 64, 255, 0.1);
+  outline: none;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.form-select {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+}
+
+.form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.25rem rgba(30, 64, 255, 0.1);
+  outline: none;
+}
+
+/* Special form styles for score inputs */
+.score-input-inline input[type="number"] {
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0.5rem;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  background: rgba(30, 64, 255, 0.05);
+  color: var(--primary);
+  transition: all 0.2s ease;
+}
+
+.score-input-inline input[type="number"]:focus {
+  border-color: var(--primary);
+  background: rgba(30, 64, 255, 0.1);
+  outline: none;
+  transform: scale(1.05);
+}
+
+/* =======================
+   Footer
+   ======================= */
+.footer {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--secondary) 100%);
+  color: #f1f1f1;
+  padding: 4rem 1rem 2rem;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  margin-top: 3rem;
+}
+
+.footer h4,
+.footer h5 {
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.footer p,
+.footer a,
+.footer li {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  line-height: 1.6;
+}
+
+.footer a:hover {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+.footer .social-icons a {
+  color: #f1f1f1;
+  font-size: 1.5rem;
+  margin: 0 0.75rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.footer .social-icons a:hover {
+  color: var(--accent);
+  background: rgba(30, 64, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.footer hr {
+  border-color: rgba(255, 255, 255, 0.2);
+  opacity: 0.5;
+  margin: 2rem 0;
+}
+
+.footer .copyright {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =======================
+   Team Images & Avatars
+   ======================= */
+.team-avatar {
+  width: 80px;
+  height: 80px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: var(--accent);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  text-transform: uppercase;
+  border: 2px solid #ffffff;
+  box-shadow: var(--shadow);
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.team-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.team-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 0.25rem;
+  border: 2px solid var(--accent);
+  transition: all 0.3s ease;
+}
+
+.team-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+/* =======================
+   Utility Classes
+   ======================= */
+.text-accent { 
+  color: var(--accent) !important; 
+}
+
+.text-accent:hover { 
+  color: var(--accent-hover) !important; 
+}
+
+.border-accent { 
+  border-color: var(--accent) !important; 
+}
+
+.bg-accent { 
+  background-color: var(--accent) !important; 
+}
+
+.rounded-soft { 
+  border-radius: var(--radius); 
+}
+
+.shadow-soft { 
+  box-shadow: var(--shadow); 
+}
+
+.shadow-lg { 
+  box-shadow: var(--shadow-lg); 
+}
+
+.text-shadow {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Statistical Numbers */
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+/* League Selection */
+.league-switch-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+#league-select {
+  min-width: 220px;
+  border-radius: var(--radius);
+  border: 2px solid var(--accent);
+  background-color: #ffffff;
+}
+
+/* =======================
+   Responsive Design
+   ======================= */
+@media (max-width: 991.98px) {
+  .container, 
+  .container-lg, 
+  .container-md, 
+  .container-sm {
+    max-width: 98%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .dashboard-card,
+  .card,
+  .mission-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .table-responsive {
+    margin-bottom: 1.5rem;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px 16px !important;
+    margin: 2px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero,
+  .hero-section {
+    padding: 6rem 1rem 3rem;
+    min-height: 70vh;
+    background-size: 200px, contain;
+  }
+  
+  .hero::before,
+  .hero-section::before {
+    background-size: 250px;
+  }
+  
+  .hero h1,
+  .hero-section h1 {
+    font-size: 2.8rem;
+  }
+  
+  .hero p,
+  .hero-section p {
+    font-size: 1.2rem;
+  }
+
+  .dashboard-card {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+
+  .team-avatar,
+  .team-image {
+    width: 60px;
+    height: 60px;
+    font-size: 1rem;
+  }
+
+  .footer {
+    padding: 3rem 1rem 1.5rem;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1,
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero p,
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+
+  .container, 
+  .container-sm {
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .table th, 
+  .table td {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .score-input-inline input[type="number"] {
+    width: 80px;
+    font-size: 1rem;
+    margin: 0 0.25rem;
+  }
+}
+
+/* =======================
+   End of Nukta League Management System Styles
+   ======================= */
