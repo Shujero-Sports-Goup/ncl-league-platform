@@ -45,7 +45,7 @@ include('../includes/navbar.php');
     
     <!-- Nukta Logo Background -->
     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
-                background: url('../assets/images/nukta-logo.png') center/contain no-repeat; 
+                background: url('<?= $base ?>/assets/images/nukta-logo.png') center/contain no-repeat; 
                 opacity: 0.1; z-index: 0;"></div>
     
     <div class="container py-5" data-aos="fade-down" data-aos-duration="800" style="position: relative; z-index: 1;">

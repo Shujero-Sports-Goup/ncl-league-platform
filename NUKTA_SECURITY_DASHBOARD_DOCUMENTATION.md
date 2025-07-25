@@ -1,8 +1,8 @@
-# NCL League Platform - Intelligent Security Dashboard
+# Nukta League Platform - Intelligent Security Dashboard
 
 ## Overview
 
-The Intelligent Security Dashboard provides comprehensive real-time security monitoring, threat detection, and audit trail management for the NCL League Platform. It's designed to help administrators maintain platform security and quickly respond to potential threats.
+The Intelligent Security Dashboard provides comprehensive real-time security monitoring, threat detection, and audit trail management for the Nukta League Platform. It's designed to help administrators maintain platform security and quickly respond to potential threats.
 
 ## Features
 
@@ -319,6 +319,6 @@ The security system is designed for easy extension:
 
 ## Conclusion
 
-The Intelligent Security Dashboard provides comprehensive security monitoring and threat detection for the NCL League Platform. With real-time monitoring, automated threat detection, and intelligent analytics, administrators can maintain a secure environment and quickly respond to potential security incidents.
+The Intelligent Security Dashboard provides comprehensive security monitoring and threat detection for the Nukta League Platform. With real-time monitoring, automated threat detection, and intelligent analytics, administrators can maintain a secure environment and quickly respond to potential security incidents.
 
 For support or feature requests, please refer to the main project documentation or contact the development team.

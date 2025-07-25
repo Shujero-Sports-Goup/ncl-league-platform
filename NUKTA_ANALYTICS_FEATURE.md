@@ -1,7 +1,7 @@
 # Analytics Feature Documentation
 
 ## Overview
-The NCL League Platform now includes comprehensive analytics for upcoming fixtures. When administrators click on any upcoming fixture in the standings manager, they get detailed performance analytics comparing both teams.
+The Nukta League Platform now includes comprehensive analytics for upcoming fixtures. When administrators click on any upcoming fixture in the standings manager, they get detailed performance analytics comparing both teams.
 
 ## Features
 

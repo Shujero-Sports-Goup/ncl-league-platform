@@ -101,4 +101,4 @@ Vanilla JS – page enhancements
 [ ] Authentication tokens or API rate limiting
 
 👑 Author
-Built and architected by James – a visionary merging coaching, community, and code 👨🏽‍💻🏀
+Built and architected by Nukta – a visionary merging coaching, community, and code 👨🏽‍💻🏀

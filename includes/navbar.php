@@ -24,14 +24,14 @@ if (!empty($_SESSION['league_id'])) {
     </a>
 
     <!-- Mobile Toggle -->
-    <button class="navbar-toggler text-accent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nclNavbar" aria-controls="nclNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler text-accent border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nuktaNavbar" aria-controls="nuktaNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="fs-2">☰</span>
     </button>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <!-- Navigation Menu -->
-    <div class="collapse navbar-collapse mt-3 mt-md-0" id="nclNavbar">
+    <div class="collapse navbar-collapse mt-3 mt-md-0" id="nuktaNavbar">
       <ul class="navbar-nav me-auto mb-2 mb-md-0 gap-2">
         <?php if (!empty($_SESSION['role'])): ?>
           <?php switch ($_SESSION['role']) {

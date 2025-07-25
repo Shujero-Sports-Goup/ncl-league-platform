@@ -972,8 +972,8 @@ class FixtureManager {
             </div>
             
             <div class="footer">
-                <p>Generated on ' . date('F j, Y \a\t g:i A') . ' • NCL League Platform</p>
-                <p>Powered by James Ngunjiri </p>
+                <p>Generated on ' . date('F j, Y \a\t g:i A') . ' • Nukta League Platform</p>
+                <p>Powered by Nukta </p>
             </div>
         </body>
         </html>';
@@ -1404,7 +1404,7 @@ class FixtureManager {
         $html .= '
             <div class="footer">
                 <p><strong>Generated on ' . date('F j, Y \a\t g:i A') . '</strong></p>
-                <p>NCL League Platform • For live updates visit the official platform</p>
+                <p>Nukta League Platform • For live updates visit the official platform</p>
                 <p>📧 Contact: info@nclleague.com • 📱 WhatsApp: +254 XXX XXX XXX</p>
             </div>
         </body>

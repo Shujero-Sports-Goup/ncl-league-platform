@@ -1,4 +1,4 @@
-# NCL League Platform - InfinityFree Deployment Guide
+# Nukta League Platform - InfinityFree Deployment Guide
 
 ## Files to Upload
 Upload these folders/files to your InfinityFree htdocs folder:

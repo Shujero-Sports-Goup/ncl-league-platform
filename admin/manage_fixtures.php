@@ -370,7 +370,7 @@ function copyFixturesToClipboard() {
         text += `${match}\n📅 ${date} ${time}\n📍 ${venue}\n\n`;
     });
     
-    text += '⚡ NCL League Platform';
+    text += '⚡ Nukta League Platform';
     
     navigator.clipboard.writeText(text).then(() => {
         showNotification('All fixtures copied for WhatsApp!', 'success');

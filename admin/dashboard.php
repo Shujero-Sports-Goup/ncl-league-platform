@@ -155,7 +155,7 @@ body {
       <div class="card admin-header text-white shadow-lg">
         <div class="card-body text-center py-5">
           <div class="mb-3">
-            <img src="../assets/images/nukta-logo.png" alt="Nukta Sports Management" style="height: 80px; background: rgba(255,255,255,0.95); padding: 12px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <img src="<?= $base ?>/assets/images/nukta-logo.png" alt="Nukta Sports Management" style="height: 80px; background: rgba(255,255,255,0.95); padding: 12px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
           </div>
           <h1 class="display-4 fw-bold mb-3">Nukta Admin Command Center</h1>
           <p class="lead mb-0">Complete control over the Nukta League Management System</p>
@@ -1068,7 +1068,7 @@ $topStandings = getLeagueStandings($conn, $leagueId, 5);
     text += `   GP: ${team.played} | W: ${team.wins} | L: ${team.losses} | GD: ${team.goal_difference >= 0 ? '+' : ''}${team.goal_difference}\n\n`;
   });
   
-  text += `⚡ Full standings on NCL League Platform`;
+  text += `⚡ Full standings on Nukta League Platform`;
   
   navigator.clipboard.writeText(text).then(() => {
     // Show success notification

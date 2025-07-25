@@ -1,4 +1,4 @@
--- NCL League Platform - InfinityFree Database Setup
+-- Nukta League Platform - InfinityFree Database Setup
 -- Run this script in your InfinityFree phpMyAdmin
 
 -- Create the enhanced match_results table structure
