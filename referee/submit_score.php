@@ -29,41 +29,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_score'])) {
   $fixtureId = intval($_POST['fixture_id']);
   $scoreHome = intval($_POST['score_home']);
   $scoreAway = intval($_POST['score_away']);
+  $homeForfeit = isset($_POST['home_forfeit']) ? 1 : 0;
+  $awayForfeit = isset($_POST['away_forfeit']) ? 1 : 0;
 
-  try {
-    // Insert or update match result
-    $stmt = $conn->prepare("
-      INSERT INTO match_results (fixture_id, score_home, score_away, submitted_by, submitted_at, match_date)
-      SELECT ?, ?, ?, ?, NOW(), f.match_date
-      FROM fixtures f
-      WHERE f.fixture_id = ?
-      ON DUPLICATE KEY UPDATE
-        score_home = VALUES(score_home),
-        score_away = VALUES(score_away),
-        submitted_by = VALUES(submitted_by),
-        submitted_at = NOW(),
-        cancelled_by_referee = 0,
-        cancelled_at = NULL,
-        cancelled_reason = NULL
-    ");
-    
-    $stmt->bind_param("iiiii", $fixtureId, $scoreHome, $scoreAway, $userId, $fixtureId);
-    
-    if ($stmt->execute()) {
-      // Update fixture status to 'played'
-      $updateStmt = $conn->prepare("UPDATE fixtures SET status = 'played' WHERE fixture_id = ?");
-      $updateStmt->bind_param("i", $fixtureId);
-      $updateStmt->execute();
-      $updateStmt->close();
+  // Validation: Prevent both teams from forfeiting
+  if ($homeForfeit && $awayForfeit) {
+    $msg = "❌ Both teams cannot forfeit the same match. Please adjust the forfeit status.";
+  } else {
+    try {
+      // Insert or update match result
+      $stmt = $conn->prepare("
+        INSERT INTO match_results (fixture_id, score_home, score_away, home_forfeit, away_forfeit, submitted_by, submitted_at)
+        SELECT ?, ?, ?, ?, ?, ?, NOW()
+        FROM fixtures f
+        WHERE f.fixture_id = ?
+        ON DUPLICATE KEY UPDATE
+          score_home = VALUES(score_home),
+          score_away = VALUES(score_away),
+          home_forfeit = VALUES(home_forfeit),
+          away_forfeit = VALUES(away_forfeit),
+          submitted_by = VALUES(submitted_by),
+          submitted_at = NOW(),
+          cancelled_by_referee = 0,
+          cancelled_at = NULL,
+          cancelled_reason = NULL
+      ");
       
-      $msg = "✅ Score recorded successfully.";
-    } else {
-      $msg = "❌ Error recording score: " . $stmt->error;
+      $stmt->bind_param("iiiiiii", $fixtureId, $scoreHome, $scoreAway, $homeForfeit, $awayForfeit, $userId, $fixtureId);
+      
+      if ($stmt->execute()) {
+        // Update fixture status to 'played'
+        $updateStmt = $conn->prepare("UPDATE fixtures SET status = 'played' WHERE fixture_id = ?");
+        $updateStmt->bind_param("i", $fixtureId);
+        $updateStmt->execute();
+        $updateStmt->close();
+        
+        $forfeitText = ($homeForfeit || $awayForfeit) ? " (forfeit recorded)" : "";
+        $msg = "✅ Score recorded successfully" . $forfeitText . ".";
+      } else {
+        $msg = "❌ Error recording score: " . $stmt->error;
+      }
+      
+      $stmt->close();
+    } catch (Exception $e) {
+      $msg = "❌ Error recording score: " . $e->getMessage();
     }
-    
-    $stmt->close();
-  } catch (Exception $e) {
-    $msg = "❌ Error recording score: " . $e->getMessage();
   }
 }
 
@@ -123,7 +133,8 @@ $recentResults = [];
 if ($selectedLeagueId) {
   $recentStmt = $conn->prepare("
     SELECT mr.fixture_id, f.match_date, f.match_time,
-           t1.name AS home_team, t2.name AS away_team, mr.score_home, mr.score_away
+           t1.name AS home_team, t2.name AS away_team, mr.score_home, mr.score_away,
+           mr.home_forfeit, mr.away_forfeit
     FROM match_results mr
     JOIN fixtures f ON mr.fixture_id = f.fixture_id
     JOIN teams t1 ON f.home_team = t1.team_id
@@ -285,7 +296,8 @@ include('../includes/navbar.php');
               <label class="form-label fw-bold d-block text-center mb-3" style="color: #333;">
                 <i class="fas fa-trophy me-2" style="color: #0000ff;"></i>Enter Final Score
               </label>
-              <div class="d-flex align-items-center justify-content-center gap-3">
+              <div class="d-flex align-items-center justify-content-center gap-4">
+                <!-- Home Team Score -->
                 <div class="text-center">
                   <label class="form-label small fw-bold text-muted">HOME</label>
                   <input type="number" name="score_home" 
@@ -295,10 +307,25 @@ include('../includes/navbar.php');
                          min="0" max="999" required placeholder="0"
                          onfocus="this.style.borderColor='#0000ff'; this.style.boxShadow='0 0 0 0.2rem rgba(0, 0, 255, 0.1)'"
                          onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                  
+                  <!-- Home Forfeit Checkbox -->
+                  <div class="mt-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="home_forfeit" id="home_forfeit"
+                             style="transform: scale(1.2); accent-color: #dc3545;">
+                      <label class="form-check-label small fw-bold" for="home_forfeit" style="color: #dc3545;">
+                        Forfeit
+                      </label>
+                    </div>
+                  </div>
                 </div>
+                
+                <!-- VS Separator -->
                 <div class="text-center">
                   <div class="fw-bold" style="font-size: 2rem; color: #0000ff; margin-top: 25px;">:</div>
                 </div>
+                
+                <!-- Away Team Score -->
                 <div class="text-center">
                   <label class="form-label small fw-bold text-muted">AWAY</label>
                   <input type="number" name="score_away" 
@@ -308,7 +335,30 @@ include('../includes/navbar.php');
                          min="0" max="999" required placeholder="0"
                          onfocus="this.style.borderColor='#0000ff'; this.style.boxShadow='0 0 0 0.2rem rgba(0, 0, 255, 0.1)'"
                          onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                  
+                  <!-- Away Forfeit Checkbox -->
+                  <div class="mt-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="away_forfeit" id="away_forfeit"
+                             style="transform: scale(1.2); accent-color: #dc3545;">
+                      <label class="form-check-label small fw-bold" for="away_forfeit" style="color: #dc3545;">
+                        Forfeit
+                      </label>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              
+              <!-- Forfeit Information -->
+              <div class="mt-3 p-3 text-center" 
+                   style="background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.05)); 
+                          border-radius: 15px; border-left: 4px solid #dc3545;">
+                <small class="text-muted">
+                  <i class="fas fa-info-circle me-1" style="color: #dc3545;"></i>
+                  <strong>Forfeit Policy:</strong> Check the forfeit box for any team that did not show up or abandoned the match. 
+                  Forfeiting teams receive -1 point, while the opposing team gets +2 points for the win. 
+                  Teams can legitimately score 0 points while playing.
+                </small>
               </div>
             </div>
             
@@ -400,17 +450,33 @@ include('../includes/navbar.php');
                   </td>
                   <td class="py-4">
                     <div class="d-flex justify-content-center align-items-center gap-2">
-                      <span class="score-badge fw-bold px-3 py-2" 
-                            style="background: linear-gradient(135deg, #0000ff, #4169E1); 
-                                   color: white; border-radius: 10px; min-width: 40px;">
-                        <?= $r['score_home'] ?>
-                      </span>
-                      <span class="text-muted">-</span>
-                      <span class="score-badge fw-bold px-3 py-2" 
-                            style="background: linear-gradient(135deg, #0000ff, #4169E1); 
-                                   color: white; border-radius: 10px; min-width: 40px;">
-                        <?= $r['score_away'] ?>
-                      </span>
+                      <div class="d-flex flex-column align-items-center">
+                        <span class="score-badge fw-bold px-3 py-2" 
+                              style="background: linear-gradient(135deg, #0000ff, #4169E1); 
+                                     color: white; border-radius: 10px; min-width: 40px;">
+                          <?= $r['score_home'] ?>
+                        </span>
+                        <?php if ($r['home_forfeit']): ?>
+                          <small class="text-danger fw-bold mt-1">
+                            <i class="fas fa-ban me-1"></i>FORFEIT
+                          </small>
+                        <?php endif; ?>
+                      </div>
+                      
+                      <span class="text-muted mx-2">-</span>
+                      
+                      <div class="d-flex flex-column align-items-center">
+                        <span class="score-badge fw-bold px-3 py-2" 
+                              style="background: linear-gradient(135deg, #0000ff, #4169E1); 
+                                     color: white; border-radius: 10px; min-width: 40px;">
+                          <?= $r['score_away'] ?>
+                        </span>
+                        <?php if ($r['away_forfeit']): ?>
+                          <small class="text-danger fw-bold mt-1">
+                            <i class="fas fa-ban me-1"></i>FORFEIT
+                          </small>
+                        <?php endif; ?>
+                      </div>
                     </div>
                   </td>
                   <td class="py-4">
@@ -463,5 +529,62 @@ include('../includes/navbar.php');
     </a>
   </div>
 </div>
+
+<script>
+// Enhanced forfeit checkbox logic
+document.addEventListener('DOMContentLoaded', function() {
+    const homeForfeit = document.getElementById('home_forfeit');
+    const awayForfeit = document.getElementById('away_forfeit');
+    const homeScore = document.querySelector('input[name="score_home"]');
+    const awayScore = document.querySelector('input[name="score_away"]');
+    
+    if (homeForfeit && awayForfeit && homeScore && awayScore) {
+        
+        // Function to handle forfeit state changes
+        function handleForfeitChange(forfeitCheckbox, scoreInput, otherForfeitCheckbox, otherScoreInput, defaultWinScore = 20) {
+            forfeitCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Set forfeiting team's score to 0 and disable input
+                    scoreInput.value = '0';
+                    scoreInput.disabled = true;
+                    scoreInput.style.opacity = '0.5';
+                    
+                    // Ensure other team isn't also forfeiting
+                    if (otherForfeitCheckbox.checked) {
+                        otherForfeitCheckbox.checked = false;
+                        otherScoreInput.disabled = false;
+                        otherScoreInput.style.opacity = '1';
+                    }
+                    
+                    // Set default win score for opposing team if their score is 0 or empty
+                    if (!otherScoreInput.value || otherScoreInput.value === '0') {
+                        otherScoreInput.value = defaultWinScore;
+                    }
+                } else {
+                    // Re-enable score input
+                    scoreInput.disabled = false;
+                    scoreInput.style.opacity = '1';
+                }
+            });
+        }
+        
+        // Apply forfeit handling to both teams
+        handleForfeitChange(homeForfeit, homeScore, awayForfeit, awayScore);
+        handleForfeitChange(awayForfeit, awayScore, homeForfeit, homeScore);
+        
+        // Form validation to prevent both teams from forfeiting
+        const form = homeScore.closest('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                if (homeForfeit.checked && awayForfeit.checked) {
+                    e.preventDefault();
+                    alert('Both teams cannot forfeit the same match. Please uncheck one forfeit option.');
+                    return false;
+                }
+            });
+        }
+    }
+});
+</script>
 
 <?php include('../includes/footer.php'); ?>

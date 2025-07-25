@@ -32,7 +32,7 @@ if ($teams) {
 
 // Fetch fixtures with scores
 $sql = "
-  SELECT f.home_team, f.away_team, r.score_home, r.score_away
+  SELECT f.home_team, f.away_team, r.score_home, r.score_away, r.home_forfeit, r.away_forfeit
   FROM fixtures f
   LEFT JOIN match_results r ON f.fixture_id = r.fixture_id
   WHERE f.league_id = $leagueId
@@ -48,16 +48,15 @@ if ($results) {
     $away = $match['away_team'];
     $sh   = (int) $match['score_home'];
     $sa   = (int) $match['score_away'];
+    $homeForfeit = (bool) $match['home_forfeit'];
+    $awayForfeit = (bool) $match['away_forfeit'];
 
     if (!isset($standings[$home]) || !isset($standings[$away])) continue;
 
     $standings[$home]['played']++;
     $standings[$away]['played']++;
 
-    // Check for forfeits (score of 0)
-    $homeForfeit = ($sh === 0);
-    $awayForfeit = ($sa === 0);
-
+    // Check for forfeits using forfeit flags
     if ($homeForfeit && $awayForfeit) {
       // Both teams forfeit - both get -1 point
       $standings[$home]['forfeits']++;
@@ -81,7 +80,7 @@ if ($results) {
       $standings[$away]['forfeits']++;
       $standings[$away]['points'] -= 1;
     } else {
-      // Normal game - no forfeits
+      // Normal game - no forfeits, determine winner by score
       if ($sh > $sa) {
         $standings[$home]['wins']++;
         $standings[$home]['points'] += 2;
@@ -92,6 +91,10 @@ if ($results) {
         $standings[$away]['points'] += 2;
         $standings[$home]['losses']++;
         $standings[$home]['points'] += 1;
+      } else {
+        // It's a tie - both teams get 1 point
+        $standings[$home]['points'] += 1;
+        $standings[$away]['points'] += 1;
       }
     }
   }
@@ -500,7 +503,7 @@ include('../includes/navbar.php');
                                      style="background: rgba(0, 0, 255, 0.05); border-radius: 12px; border-left: 4px solid #0000ff;">
                                     <small class="text-muted">
                                         <i class="fas fa-info-circle me-2" style="color: #0000ff;"></i>
-                                        <strong>Note:</strong> A forfeit is recorded when a team scores 0 points in a match
+                                        <strong>Note:</strong> Forfeits are manually marked by referees during score submission. Teams can legitimately score 0 points in a game.
                                     </small>
                                 </div>
                             </div>

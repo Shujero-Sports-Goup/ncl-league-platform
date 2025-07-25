@@ -118,7 +118,7 @@ $legendHtml = '
         <strong>Pts:</strong> Points
     </p>
     <p style="font-size: 10px; margin: 5px 0 0 0; color: #666;">
-        <strong>Scoring:</strong> Win = 2 points, Loss = 1 point, Forfeit = -1 point (score of 0)
+        <strong>Scoring:</strong> Win = 2 points, Loss = 1 point, Forfeit = -1 point (marked by referee)
     </p>
 </div>';
 

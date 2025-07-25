@@ -30,7 +30,7 @@ function getLeagueStandings($conn, $leagueId, $limit = null) {
 
     // Fetch fixtures with scores - using the EXACT same logic as standings.php
     $sql = "
-      SELECT f.fixture_id, f.home_team, f.away_team, f.match_date, r.score_home, r.score_away
+      SELECT f.fixture_id, f.home_team, f.away_team, f.match_date, r.score_home, r.score_away, r.home_forfeit, r.away_forfeit
       FROM fixtures f
       LEFT JOIN match_results r ON f.fixture_id = r.fixture_id
       WHERE f.league_id = $leagueId
@@ -51,6 +51,8 @@ function getLeagueStandings($conn, $leagueId, $limit = null) {
             $away = $match['away_team'];
             $sh = (int) $match['score_home'];
             $sa = (int) $match['score_away'];
+            $homeForfeit = (bool) $match['home_forfeit'];
+            $awayForfeit = (bool) $match['away_forfeit'];
 
             if (!isset($standings[$home]) || !isset($standings[$away])) continue;
 
@@ -61,10 +63,7 @@ function getLeagueStandings($conn, $leagueId, $limit = null) {
             $standings[$away]['goals_for'] += $sa;
             $standings[$away]['goals_against'] += $sh;
 
-            // FORFEIT LOGIC - EXACT same as standings.php
-            $homeForfeit = ($sh === 0);
-            $awayForfeit = ($sa === 0);
-
+            // FORFEIT LOGIC - using forfeit flags, same as standings.php
             if ($homeForfeit && $awayForfeit) {
                 // Both teams forfeit - both get -1 point
                 $standings[$home]['forfeits']++;
@@ -94,7 +93,7 @@ function getLeagueStandings($conn, $leagueId, $limit = null) {
                 $standings[$away]['recent_form'] = 'F' . $standings[$away]['recent_form'];
                 $standings[$home]['recent_form'] = 'W' . $standings[$home]['recent_form'];
             } else {
-                // Normal game - no forfeits
+                // Normal game - no forfeits, determine winner by score
                 if ($sh > $sa) {
                     $standings[$home]['wins']++;
                     $standings[$home]['points'] += 2;
@@ -109,6 +108,12 @@ function getLeagueStandings($conn, $leagueId, $limit = null) {
                     $standings[$home]['points'] += 1;
                     $standings[$away]['recent_form'] = 'W' . $standings[$away]['recent_form'];
                     $standings[$home]['recent_form'] = 'L' . $standings[$home]['recent_form'];
+                } else {
+                    // It's a tie - both teams get 1 point
+                    $standings[$home]['points'] += 1;
+                    $standings[$away]['points'] += 1;
+                    $standings[$home]['recent_form'] = 'D' . $standings[$home]['recent_form'];
+                    $standings[$away]['recent_form'] = 'D' . $standings[$away]['recent_form'];
                 }
             }
 
@@ -363,6 +368,8 @@ function getTeamStreaks($conn, $leagueId) {
                 f.away_team,
                 r.score_home,
                 r.score_away,
+                r.home_forfeit,
+                r.away_forfeit,
                 f.match_date
             FROM fixtures f
             JOIN match_results r ON f.fixture_id = r.fixture_id
@@ -383,13 +390,14 @@ function getTeamStreaks($conn, $leagueId) {
             $isHome = $result['home_team'] == $teamId;
             $teamScore = (int)($isHome ? $result['score_home'] : $result['score_away']);
             $oppScore = (int)($isHome ? $result['score_away'] : $result['score_home']);
+            $teamForfeit = (bool)($isHome ? $result['home_forfeit'] : $result['away_forfeit']);
+            $oppForfeit = (bool)($isHome ? $result['away_forfeit'] : $result['home_forfeit']);
             
-            // Check for forfeit (score of 0) - same logic as standings.php
-            $teamForfeit = ($teamScore === 0);
-            $oppForfeit = ($oppScore === 0);
-            
+            // Check for forfeit using forfeit flags
             if ($teamForfeit) {
                 $gameResult = 'F'; // Forfeit
+            } elseif ($oppForfeit) {
+                $gameResult = 'W'; // Win (opponent forfeited)
             } elseif ($teamScore > $oppScore) {
                 $gameResult = 'W'; // Win
             } else {

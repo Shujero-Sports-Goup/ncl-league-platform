@@ -381,7 +381,7 @@ include('../includes/navbar.php');
         <ul class="mb-0">
           <li><strong>Win:</strong> 2 points</li>
           <li><strong>Loss:</strong> 1 point</li>
-          <li><strong>Forfeit:</strong> -1 point (score of 0)</li>
+          <li><strong>Forfeit:</strong> -1 point (marked by referee)</li>
         </ul>
       </div>
       <div class="col-md-4">

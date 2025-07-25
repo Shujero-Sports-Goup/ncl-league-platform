@@ -32,9 +32,9 @@ function calculateLeagueStandings($conn, $leagueId) {
         }
     }
     
-    // Fetch fixtures with scores
+    // Fetch fixtures with scores and forfeit flags
     $sql = "
-        SELECT f.home_team, f.away_team, r.score_home, r.score_away
+        SELECT f.home_team, f.away_team, r.score_home, r.score_away, r.home_forfeit, r.away_forfeit
         FROM fixtures f
         LEFT JOIN match_results r ON f.fixture_id = r.fixture_id
         WHERE f.league_id = $leagueId
@@ -50,16 +50,15 @@ function calculateLeagueStandings($conn, $leagueId) {
             $away = $match['away_team'];
             $sh = (int) $match['score_home'];
             $sa = (int) $match['score_away'];
+            $homeForfeit = (bool) $match['home_forfeit'];
+            $awayForfeit = (bool) $match['away_forfeit'];
             
             if (!isset($standings[$home]) || !isset($standings[$away])) continue;
             
             $standings[$home]['played']++;
             $standings[$away]['played']++;
             
-            // Check for forfeits (score of 0)
-            $homeForfeit = ($sh === 0);
-            $awayForfeit = ($sa === 0);
-            
+            // Check for forfeits using forfeit flags
             if ($homeForfeit && $awayForfeit) {
                 // Both teams forfeit - both get -1 point
                 $standings[$home]['forfeits']++;
@@ -83,7 +82,7 @@ function calculateLeagueStandings($conn, $leagueId) {
                 $standings[$away]['forfeits']++;
                 $standings[$away]['points'] -= 1;
             } else {
-                // Normal game - no forfeits
+                // Normal game - no forfeits, determine winner by score
                 if ($sh > $sa) {
                     $standings[$home]['wins']++;
                     $standings[$home]['points'] += 2;
@@ -94,6 +93,10 @@ function calculateLeagueStandings($conn, $leagueId) {
                     $standings[$away]['points'] += 2;
                     $standings[$home]['losses']++;
                     $standings[$home]['points'] += 1;
+                } else {
+                    // It's a tie - both teams get 1 point
+                    $standings[$home]['points'] += 1;
+                    $standings[$away]['points'] += 1;
                 }
             }
         }
@@ -121,7 +124,7 @@ include('../includes/navbar.php');
         <ul class="mb-0">
             <li><strong>Win:</strong> 2 points</li>
             <li><strong>Loss:</strong> 1 point</li>
-            <li><strong>Forfeit:</strong> -1 point (score of 0)</li>
+            <li><strong>Forfeit:</strong> -1 point (marked by referee)</li>
         </ul>
     </div>
 
