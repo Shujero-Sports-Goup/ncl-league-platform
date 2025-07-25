@@ -70,7 +70,7 @@ $leagues = $conn->query("
     <?php
     $animations = ['fade-up', 'fade-up', 'fade-up', 'fade-up'];
     $colors = [
-      'NCL' => '#0000ff',
+      'NUKTA' => '#0000ff',
       'WEL' => '#DF2A57', 
       'FSL' => '#FFA908',
       'YBL' => '#462022',
@@ -82,7 +82,7 @@ $leagues = $conn->query("
       $primaryColor = $colors[$abbr] ?? '#2d3748';
       $hasLogo = !empty($league['logo_url']);
       $taglines = [
-        'NCL' => 'Nairobi\'s premier basketball competition',
+        'NUKTA' => 'Nairobi\'s premier basketball competition',
         'WEL' => 'Empowering women through basketball',
         'FSL' => 'Developing young basketball talent',
         'YBL' => 'Youth basketball development league',

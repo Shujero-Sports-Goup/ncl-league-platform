@@ -335,7 +335,7 @@ a:hover {
   box-shadow: var(--shadow-lg);
 }
 
-.league-card-ncl {
+.league-card-nukta {
   background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
   border-top: 4px solid var(--primary);
 }

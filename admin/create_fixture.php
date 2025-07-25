@@ -24,28 +24,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $time  = $_POST['match_time'] ?? '';
   $venue = trim($_POST['venue'] ?? '');
 
-  // Additional validation for NCL and WEL time rules
+  // Additional validation for NUKTA and WEL time rules
   $currentLeague = $_SESSION['league_name'] ?? '';
-  $isNCLorWEL = strpos($currentLeague, 'NCL') !== false || 
+  $isNUKTAorWEL = strpos($currentLeague, 'NUKTA') !== false || 
                 strpos($currentLeague, 'WEL') !== false ||
                 stripos($currentLeague, 'nairobi') !== false || 
                 stripos($currentLeague, 'women') !== false;
   
   $timeValidation = true;
-  if ($isNCLorWEL && $date) {
+  if ($isNUKTAorWEL && $date) {
     $dayOfWeek = date('w', strtotime($date)); // 0=Sunday, 1=Monday, ..., 6=Saturday
     
     if ($dayOfWeek == 5) { // Friday
       $allowedTimes = ['18:00', '19:30'];
       if (!in_array($time, $allowedTimes)) {
         $timeValidation = false;
-        $msg = "❌ For NCL/WEL Friday matches, only 6:00 PM (18:00) or 7:30 PM (19:30) are allowed.";
+        $msg = "❌ For NUKTA/WEL Friday matches, only 6:00 PM (18:00) or 7:30 PM (19:30) are allowed.";
       }
     } elseif ($dayOfWeek == 0 || $dayOfWeek == 6) { // Weekend
       $allowedTimes = ['10:00', '11:30', '13:00', '14:30', '16:00'];
       if (!in_array($time, $allowedTimes)) {
         $timeValidation = false;
-        $msg = "❌ For NCL/WEL weekend matches, only 10:00 AM, 11:30 AM, 1:00 PM, 2:30 PM, or 4:00 PM are allowed.";
+        $msg = "❌ For NUKTA/WEL weekend matches, only 10:00 AM, 11:30 AM, 1:00 PM, 2:30 PM, or 4:00 PM are allowed.";
       }
     }
   }

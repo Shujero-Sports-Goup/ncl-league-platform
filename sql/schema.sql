@@ -75,7 +75,7 @@ CREATE TABLE match_results (
 
 -- Optional: Seed Leagues
 INSERT INTO leagues (name, abbreviation) VALUES
-  ('NCL Volt Cup', 'NCL'),
+  ('Nukta Premier League', 'NUKTA'),
   ('Women Empowerment League', 'WEL');
 
 -- Optional: Seed Admin User (SHA2 hash of 'admin123')

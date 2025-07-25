@@ -38,167 +38,277 @@ include('../includes/header.php');
 include('../includes/navbar.php');
 ?>
 
-<section class="league-hero border-bottom py-5 text-center text-light">
-  <div class="container">
-    <h2 class="fw-bold display-5 mb-2">Fixtures & Results</h2>
-    <p class="text-light small mb-0"><?= htmlspecialchars($leagueName) ?>  Schedule</p>
-  </div>
+<!-- Hero Section -->
+<section class="hero-banner-teams d-flex align-items-center text-white text-center" 
+         style="background: linear-gradient(135deg, #0000ff 0%, rgba(0, 0, 255, 0.9) 50%, #0000ff 100%); 
+                min-height: 400px; position: relative; overflow: hidden;">
+    
+    <!-- Nukta Logo Background -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+                background: url('../assets/images/nukta-logo.png') center/contain no-repeat; 
+                opacity: 0.1; z-index: 0;"></div>
+    
+    <div class="container py-5" data-aos="fade-down" data-aos-duration="800" style="position: relative; z-index: 1;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="hero-heading display-3 fw-bold mb-4 text-white">Fixtures & Results</h1>
+                <h3 class="text-white fw-semibold mb-3"><?= htmlspecialchars($leagueName) ?></h3>
+                <p class="lead mb-4 text-white">Complete schedule of matches and game results</p>
+                <div class="hero-divider mx-auto" style="width: 100px; height: 3px; background: white; border-radius: 2px;"></div>
+            </div>
+        </div>
+    </div>
 </section>
 
-
-<div class="container mb-5">
+<div class="container py-5" style="margin-top: 2rem;">
   
   <!-- Upcoming Fixtures Section -->
   <div class="mb-5">
-    <div class="d-flex align-items-center mb-4">
-      <div class="badge bg-primary me-3 p-2">
-        <i class="fas fa-calendar-alt"></i>
+    <div class="card border-0 shadow-lg" 
+         style="border-radius: 20px; background: white; overflow: hidden;">
+      
+      <!-- Section Header -->
+      <div class="card-header border-0 d-flex align-items-center justify-content-between py-4" 
+           style="background: linear-gradient(135deg, #0000ff, #4169E1);">
+        <div class="d-flex align-items-center">
+          <div class="icon-badge me-3" 
+               style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); 
+                      border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-calendar-alt fa-lg text-white"></i>
+          </div>
+          <div>
+            <h3 class="mb-0 fw-bold text-white">Upcoming Fixtures</h3>
+            <small class="text-white-50">Scheduled matches</small>
+          </div>
+        </div>
+        <span class="badge px-4 py-2 fw-bold" 
+              style="background: rgba(255, 255, 255, 0.2); color: white; border-radius: 20px; font-size: 1rem;">
+          <?= $upcomingResults->num_rows ?> matches
+        </span>
       </div>
-      <h3 class="mb-0 fw-bold">Upcoming Fixtures</h3>
-      <span class="badge bg-warning ms-2"><?= $upcomingResults->num_rows ?> matches</span>
+      
+      <div class="card-body p-0">
+        <?php if ($upcomingResults->num_rows > 0): ?>
+          <div class="table-responsive">
+            <table class="table mb-0 align-middle">
+              <thead style="background: linear-gradient(135deg, #0000ff, #4169E1);">
+                <tr class="text-center">
+                  <th class="py-4 fw-bold" style="color: white; border: none;">
+                    <i class="fas fa-calendar me-1"></i>Date
+                  </th>
+                  <th class="py-4 fw-bold" style="color: white; border: none;">
+                    <i class="fas fa-clock me-1"></i>Time
+                  </th>
+                  <th class="py-4 fw-bold" style="color: white; border: none;">
+                    <i class="fas fa-vs me-1"></i>Match
+                  </th>
+                  <th class="py-4 fw-bold" style="color: white; border: none;">
+                    <i class="fas fa-map-marker-alt me-1"></i>Venue
+                  </th>
+                  <th class="py-4 fw-bold" style="color: white; border: none;">
+                    <i class="fas fa-info-circle me-1"></i>Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php while ($row = $upcomingResults->fetch_assoc()): ?>
+                  <tr class="text-center fixture-row" 
+                      style="border-bottom: 1px solid #f0f0f0; transition: all 0.3s ease;"
+                      onmouseover="this.style.backgroundColor='rgba(0, 0, 255, 0.05)'; this.style.transform='translateX(5px)'"
+                      onmouseout="this.style.backgroundColor='white'; this.style.transform='translateX(0)'">
+                    <td class="py-4">
+                      <div class="date-info">
+                        <div class="fw-bold" style="color: #0000ff; font-size: 1.1rem;">
+                          <?= date("d M", strtotime($row['match_date'])) ?>
+                        </div>
+                        <small class="text-muted"><?= date("l", strtotime($row['match_date'])) ?></small>
+                      </div>
+                    </td>
+                    <td class="py-4">
+                      <span class="badge px-3 py-2 fw-bold" 
+                            style="background: linear-gradient(135deg, #17a2b8, #20c997); color: white; font-size: 0.9rem;">
+                        <?= date("H:i", strtotime($row['match_time'])) ?>
+                      </span>
+                    </td>
+                    <td class="py-4">
+                      <div class="match-info" style="min-width: 250px;">
+                        <div class="fw-bold mb-2" style="color: #333; font-size: 1.1rem;">
+                          <?= htmlspecialchars($row['home_team']) ?>
+                          <span class="text-muted mx-3" style="font-size: 0.9rem;">VS</span>
+                          <?= htmlspecialchars($row['away_team']) ?>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="py-4">
+                      <small class="text-muted">
+                        <i class="fas fa-map-marker-alt me-1" style="color: #0000ff;"></i>
+                        <?= htmlspecialchars($row['venue']) ?>
+                      </small>
+                    </td>
+                    <td class="py-4">
+                      <span class="badge px-3 py-2 fw-bold" 
+                            style="background: linear-gradient(135deg, #ffc107, #ffed4e); color: #000; font-size: 0.9rem;">
+                        <i class="fas fa-clock me-1"></i>Scheduled
+                      </span>
+                    </td>
+                  </tr>
+                <?php endwhile; ?>
+              </tbody>
+            </table>
+          </div>
+        <?php else: ?>
+          <div class="text-center py-5">
+            <i class="fas fa-calendar-times fa-3x text-muted mb-3"></i>
+            <h5 class="text-muted mb-2">No Upcoming Fixtures</h5>
+            <p class="text-muted">Check back soon for new scheduled matches!</p>
+          </div>
+        <?php endif; ?>
+      </div>
     </div>
-    
-    <?php if ($upcomingResults->num_rows > 0): ?>
-      <div class="table-responsive shadow-sm rounded">
-        <table class="table table-hover mb-0 align-middle">
-          <thead class="table-primary">
-            <tr class="text-center">
-              <th>Date</th>
-              <th>Time</th>
-              <th>Match</th>
-              <th>Venue</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php while ($row = $upcomingResults->fetch_assoc()): ?>
-              <tr class="text-center">
-                <td class="fw-medium">
-                  <?= date("d M, Y", strtotime($row['match_date'])) ?>
-                  <div class="text-muted small">
-                    <?= date("l", strtotime($row['match_date'])) ?>
-                  </div>
-                </td>
-                <td>
-                  <span class="badge bg-info text-dark fw-bold">
-                    <?= date("H:i", strtotime($row['match_time'])) ?>
-                  </span>
-                </td>
-                <td>
-                  <div class="fw-semibold mb-1">
-                    <?= htmlspecialchars($row['home_team']) ?>
-                    <span class="text-muted mx-2">vs</span>
-                    <?= htmlspecialchars($row['away_team']) ?>
-                  </div>
-                </td>
-                <td class="text-muted">
-                  <i class="fas fa-map-marker-alt me-1"></i>
-                  <?= htmlspecialchars($row['venue']) ?>
-                </td>
-                <td>
-                  <span class="badge bg-warning text-dark px-3">Scheduled</span>
-                </td>
-              </tr>
-            <?php endwhile; ?>
-          </tbody>
-        </table>
-      </div>
-    <?php else: ?>
-      <div class="alert alert-info text-center">
-        <i class="fas fa-info-circle me-2"></i>
-        No upcoming fixtures scheduled at this time.
-      </div>
-    <?php endif; ?>
   </div>
 
-  <!-- Played Fixtures Section -->
+  <!-- Recent Results Section -->
   <div class="mb-5">
-    <div class="d-flex align-items-center mb-4">
-      <div class="badge bg-success me-3 p-2">
-        <i class="fas fa-check-circle"></i>
+    <div class="card border-0 shadow-lg" 
+         style="border-radius: 20px; background: white; overflow: hidden;">
+      
+      <!-- Section Header -->
+      <div class="card-header border-0 d-flex align-items-center justify-content-between py-4" 
+           style="background: linear-gradient(135deg, #28a745, #20c997);">
+        <div class="d-flex align-items-center">
+          <div class="icon-badge me-3" 
+               style="width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); 
+                      border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-check-circle fa-lg text-white"></i>
+          </div>
+          <div>
+            <h3 class="mb-0 fw-bold text-white">Recent Results</h3>
+            <small class="text-white-50">Completed matches</small>
+          </div>
+        </div>
+        <span class="badge px-4 py-2 fw-bold" 
+              style="background: rgba(255, 255, 255, 0.2); color: white; border-radius: 20px; font-size: 1rem;">
+          <?= $playedResults->num_rows ?> completed
+        </span>
       </div>
-      <h3 class="mb-0 fw-bold">Recent Results</h3>
-      <span class="badge bg-success ms-2"><?= $playedResults->num_rows ?> completed</span>
-    </div>
-    
-    <?php if ($playedResults->num_rows > 0): ?>
-      <div class="accordion" id="playedFixturesAccordion">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="playedHeading">
-            <button class="accordion-button collapsed" type="button" 
-                    data-bs-toggle="collapse" data-bs-target="#playedResults" 
-                    aria-expanded="false" aria-controls="playedResults"
-                    id="playedAccordionBtn">
-              <i class="fas fa-history me-2"></i>
-              <span id="accordionBtnText">View All Completed Matches (<?= $playedResults->num_rows ?>)</span>
-            </button>
-          </h2>
-          <div id="playedResults" class="accordion-collapse collapse" 
-               aria-labelledby="playedHeading" data-bs-parent="#playedFixturesAccordion">
-            <div class="accordion-body p-0">
-              <div class="table-responsive">
-                <table class="table table-hover mb-0 align-middle">
-                  <thead class="table-success">
-                    <tr class="text-center">
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Match & Result</th>
-                      <th>Venue</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php while ($row = $playedResults->fetch_assoc()): ?>
-                      <tr class="text-center">
-                        <td class="fw-medium">
-                          <?= date("d M, Y", strtotime($row['match_date'])) ?>
-                          <div class="text-muted small">
-                            <?= date("l", strtotime($row['match_date'])) ?>
-                          </div>
-                        </td>
-                        <td>
-                          <span class="badge bg-secondary">
-                            <?= date("H:i", strtotime($row['match_time'])) ?>
-                          </span>
-                        </td>
-                        <td>
-                          <div class="fw-semibold mb-1">
-                            <?= htmlspecialchars($row['home_team']) ?>
-                            <span class="text-muted mx-2">vs</span>
-                            <?= htmlspecialchars($row['away_team']) ?>
-                          </div>
-                          <?php if (isset($row['score_home'], $row['score_away'])): ?>
-                            <div class="d-flex justify-content-center align-items-center gap-3 mt-2">
-                              <span class="badge bg-primary fs-6 fw-bold"><?= $row['score_home'] ?></span>
-                              <span class="text-uppercase small text-muted">Final</span>
-                              <span class="badge bg-primary fs-6 fw-bold"><?= $row['score_away'] ?></span>
-                            </div>
-                          <?php else: ?>
-                            <div class="text-muted small">Score not available</div>
-                          <?php endif; ?>
-                        </td>
-                        <td class="text-muted">
-                          <i class="fas fa-map-marker-alt me-1"></i>
-                          <?= htmlspecialchars($row['venue']) ?>
-                        </td>
-                        <td>
-                          <span class="badge bg-success px-3">Completed</span>
-                        </td>
-                      </tr>
-                    <?php endwhile; ?>
-                  </tbody>
-                </table>
+      
+      <div class="card-body p-0">
+        <?php if ($playedResults->num_rows > 0): ?>
+          <div class="accordion" id="playedFixturesAccordion">
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header" id="playedHeading">
+                <button class="accordion-button collapsed border-0 fw-bold py-4" 
+                        style="background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(40, 167, 69, 0.05)); 
+                               color: #0000ff; font-size: 1.1rem;"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#playedResults" 
+                        aria-expanded="false" aria-controls="playedResults" id="playedAccordionBtn">
+                  <i class="fas fa-history me-3" style="color: #28a745;"></i>
+                  <span id="accordionBtnText">View All Completed Matches (<?= $playedResults->num_rows ?>)</span>
+                </button>
+              </h2>
+              <div id="playedResults" class="accordion-collapse collapse" 
+                   aria-labelledby="playedHeading" data-bs-parent="#playedFixturesAccordion">
+                <div class="accordion-body p-0">
+                  <div class="table-responsive">
+                    <table class="table mb-0 align-middle">
+                      <thead style="background: linear-gradient(135deg, #0000ff, #4169E1);">
+                        <tr class="text-center">
+                          <th class="py-4 fw-bold" style="color: white; border: none;">
+                            <i class="fas fa-calendar me-1"></i>Date
+                          </th>
+                          <th class="py-4 fw-bold" style="color: white; border: none;">
+                            <i class="fas fa-clock me-1"></i>Time
+                          </th>
+                          <th class="py-4 fw-bold" style="color: white; border: none;">
+                            <i class="fas fa-trophy me-1"></i>Match & Result
+                          </th>
+                          <th class="py-4 fw-bold" style="color: white; border: none;">
+                            <i class="fas fa-map-marker-alt me-1"></i>Venue
+                          </th>
+                          <th class="py-4 fw-bold" style="color: white; border: none;">
+                            <i class="fas fa-check-circle me-1"></i>Status
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php while ($row = $playedResults->fetch_assoc()): ?>
+                          <tr class="text-center result-row" 
+                              style="border-bottom: 1px solid #f0f0f0; transition: all 0.3s ease;"
+                              onmouseover="this.style.backgroundColor='rgba(40, 167, 69, 0.05)'; this.style.transform='translateX(5px)'"
+                              onmouseout="this.style.backgroundColor='white'; this.style.transform='translateX(0)'">
+                            <td class="py-4">
+                              <div class="date-info">
+                                <div class="fw-bold" style="color: #0000ff; font-size: 1.1rem;">
+                                  <?= date("d M", strtotime($row['match_date'])) ?>
+                                </div>
+                                <small class="text-muted"><?= date("l", strtotime($row['match_date'])) ?></small>
+                              </div>
+                            </td>
+                            <td class="py-4">
+                              <span class="badge px-3 py-2" 
+                                    style="background: #6c757d; color: white; font-size: 0.9rem;">
+                                <?= date("H:i", strtotime($row['match_time'])) ?>
+                              </span>
+                            </td>
+                            <td class="py-4">
+                              <div class="match-result" style="min-width: 300px;">
+                                <div class="fw-bold mb-2" style="color: #333; font-size: 1.1rem;">
+                                  <?= htmlspecialchars($row['home_team']) ?>
+                                  <span class="text-muted mx-3" style="font-size: 0.9rem;">VS</span>
+                                  <?= htmlspecialchars($row['away_team']) ?>
+                                </div>
+                                <?php if (isset($row['score_home'], $row['score_away'])): ?>
+                                  <div class="d-flex justify-content-center align-items-center gap-3 mt-3">
+                                    <span class="score-badge fw-bold px-3 py-2" 
+                                          style="background: linear-gradient(135deg, #0000ff, #4169E1); 
+                                                 color: white; border-radius: 10px; font-size: 1.1rem; min-width: 45px;">
+                                      <?= $row['score_home'] ?>
+                                    </span>
+                                    <span class="text-uppercase small fw-bold" style="color: #28a745;">FINAL</span>
+                                    <span class="score-badge fw-bold px-3 py-2" 
+                                          style="background: linear-gradient(135deg, #0000ff, #4169E1); 
+                                                 color: white; border-radius: 10px; font-size: 1.1rem; min-width: 45px;">
+                                      <?= $row['score_away'] ?>
+                                    </span>
+                                  </div>
+                                <?php else: ?>
+                                  <div class="text-muted small mt-2">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>
+                                    Score not available
+                                  </div>
+                                <?php endif; ?>
+                              </div>
+                            </td>
+                            <td class="py-4">
+                              <small class="text-muted">
+                                <i class="fas fa-map-marker-alt me-1" style="color: #0000ff;"></i>
+                                <?= htmlspecialchars($row['venue']) ?>
+                              </small>
+                            </td>
+                            <td class="py-4">
+                              <span class="badge px-3 py-2 fw-bold" 
+                                    style="background: linear-gradient(135deg, #28a745, #20c997); color: white; font-size: 0.9rem;">
+                                <i class="fas fa-check me-1"></i>Completed
+                              </span>
+                            </td>
+                          </tr>
+                        <?php endwhile; ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <?php else: ?>
+          <div class="text-center py-5">
+            <i class="fas fa-history fa-3x text-muted mb-3"></i>
+            <h5 class="text-muted mb-2">No Completed Matches</h5>
+            <p class="text-muted">Match results will appear here once games are played!</p>
+          </div>
+        <?php endif; ?>
       </div>
-    <?php else: ?>
-      <div class="alert alert-secondary text-center">
-        <i class="fas fa-calendar-times me-2"></i>
-        No completed matches yet.
-      </div>
-    <?php endif; ?>
+    </div>
   </div>
 
   <!-- Navigation -->
