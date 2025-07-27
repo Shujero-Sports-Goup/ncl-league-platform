@@ -157,7 +157,7 @@ body {
           <div class="mb-3">
             <img src="<?= $base ?>/assets/images/nukta-logo.png" alt="Nukta Sports Management" style="height: 80px; background: rgba(255,255,255,0.95); padding: 12px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
           </div>
-          <h1 class="display-4 fw-bold mb-3">Nukta Admin Command Center</h1>
+          <h1 class="display-4 fw-bold mb-3 text-white">Nukta Admin Command Center</h1>
           <p class="lead mb-0">Complete control over the Nukta League Management System</p>
         </div>
       </div>
@@ -209,7 +209,7 @@ body {
     <div class="col-12">
       <div class="card shadow-sm border-0">
         <div class="card-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent-hover) 100%); color: white;">
-          <h5 class="mb-0">🔍 Universal Search & Filter</h5>
+          <h5 class="mb-0 text-white">🔍 Universal Search & Filter</h5>
         </div>
         <div class="card-body bg-light">
           <form method="GET" class="row g-3 align-items-end">
@@ -262,7 +262,7 @@ body {
     <div class="col-12">
       <div class="card shadow-sm border-0">
         <div class="card-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent-hover) 100%); color: white;">
-          <h5 class="mb-0">⚡ Quick Actions</h5>
+          <h5 class="mb-0 text-white">⚡ Quick Actions</h5>
         </div>
         <div class="card-body bg-white">
           <div class="row g-4">
@@ -331,7 +331,7 @@ body {
     <div class="col-12">
       <div class="card shadow-sm border-0">
         <div class="card-header" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent-hover) 100%); color: white;">
-          <h5 class="mb-0">🎯 Management Tools</h5>
+          <h5 class="mb-0 text-white">🎯 Management Tools</h5>
         </div>
         <div class="card-body bg-white">
           <div class="row g-4">
@@ -552,7 +552,7 @@ body {
     <div class="col-12">
       <div class="card shadow-sm border-0">
         <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
-          <h5 class="mb-0"><i class="fas fa-shield-alt"></i> Security Dashboard Overview</h5>
+          <h5 class="mb-0 text-white"><i class="fas fa-shield-alt"></i> Security Dashboard Overview</h5>
           <a href="security_dashboard.php" class="btn btn-light btn-sm">
             <i class="fas fa-external-link-alt"></i> Full Dashboard
           </a>
@@ -709,51 +709,58 @@ body {
   </div>
 
   <!-- Export Center -->
-  <div class="row mb-4">
-    <div class="col-12">
-      <h5 class="text-center mb-4">📥 Data Export Center</h5>
-    </div>
-    <div class="col-md-4">
-      <div class="card shadow-sm text-center">
-        <div class="card-header bg-primary text-white">
-          <h6 class="mb-0">📈 Standings Export</h6>
-        </div>
-        <div class="card-body">
-          <div class="d-grid gap-2">
-            <a href="<?= $base ?>/leagues/standings.php" class="btn btn-info">👁️ View Standings</a>
-            <a href="<?= $base ?>/admin/export/export_standings.php?league=<?= $leagueId ?>" class="btn btn-outline-primary">📄 CSV</a>
-            <a href="<?= $base ?>/admin/export/export_standings_pdf.php?league=<?= $leagueId ?>" class="btn btn-primary">📋 Comprehensive PDF</a>
-          </div>
-        </div>
+<div class="row mb-4">
+  <div class="col-12">
+    <h5 class="text-center mb-4 text-primary">📥 Data Export Center</h5>
+  </div>
+
+  <!-- Standings Export -->
+  <div class="col-md-4">
+    <div class="card shadow-sm text-center">
+      <div class="card-header bg-primary text-white">
+        <h6 class="mb-0 text-white">📈 Standings Export</h6>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card shadow-sm text-center">
-        <div class="card-header bg-success text-white">
-          <h6 class="mb-0">📅 Fixtures Export</h6>
-        </div>
-        <div class="card-body">
-          <div class="d-grid gap-2">
-            <a href="<?= $base ?>/admin/export/export_fixtures.php?league=<?= $leagueId ?>" class="btn btn-outline-success">📄 CSV</a>
-            <a href="<?= $base ?>/admin/export/export_fixtures_pdf.php?league=<?= $leagueId ?>" class="btn btn-outline-success">📋 PDF</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card shadow-sm text-center">
-        <div class="card-header bg-warning text-dark">
-          <h6 class="mb-0">🏁 Results Export</h6>
-        </div>
-        <div class="card-body">
-          <div class="d-grid gap-2">
-            <a href="<?= $base ?>/admin/export/export_results.php?league=<?= $leagueId ?>" class="btn btn-outline-warning">📄 CSV</a>
-            <a href="<?= $base ?>/admin/export/export_results_pdf.php?league=<?= $leagueId ?>" class="btn btn-outline-warning">📋 PDF</a>
-          </div>
+      <div class="card-body">
+        <div class="d-grid gap-2">
+          <a href="<?= $base ?>/leagues/standings.php" class="btn btn-info">👁️ View Standings</a>
+          <a href="<?= $base ?>/admin/export/export_standings.php?league=<?= $leagueId ?>" class="btn btn-outline-primary">📄 CSV</a>
+          <a href="<?= $base ?>/admin/export/export_standings_pdf.php?league=<?= $leagueId ?>" class="btn btn-primary">📋 Comprehensive PDF</a>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Fixtures Export -->
+  <div class="col-md-4">
+    <div class="card shadow-sm text-center">
+      <div class="card-header bg-success text-white">
+        <h6 class="mb-0 text-white">📅 Fixtures Export</h6>
+      </div>
+      <div class="card-body">
+        <div class="d-grid gap-2">
+          <a href="<?= $base ?>/admin/export/export_fixtures.php?league=<?= $leagueId ?>" class="btn btn-outline-success">📄 CSV</a>
+          <a href="<?= $base ?>/admin/export/export_fixtures_pdf.php?league=<?= $leagueId ?>" class="btn btn-success">📋 Comprehensive PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Export -->
+  <div class="col-md-4">
+    <div class="card shadow-sm text-center">
+      <div class="card-header bg-warning text-white">
+        <h6 class="mb-0 text-white">🏁 Results Export</h6>
+      </div>
+      <div class="card-body">
+        <div class="d-grid gap-2">
+          <a href="<?= $base ?>/admin/export/export_results.php?league=<?= $leagueId ?>" class="btn btn-outline-warning">📄 CSV</a>
+          <a href="<?= $base ?>/admin/export/export_results_pdf.php?league=<?= $leagueId ?>" class="btn btn-warning">📋 Comprehensive PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Quick Standings Preview -->
 
@@ -765,7 +772,7 @@ $topStandings = getLeagueStandings($conn, $leagueId, 5);
   <div class="col-12">
     <div class="card shadow-sm">
       <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">🏆 Current League Standings (Top 5)</h5>
+        <h5 class="mb-0 text-white">🏆 Current League Standings (Top 5)</h5>
         <div class="btn-group" role="group">
           <button class="btn btn-sm btn-light" onclick="copyDashboardStandings()">
             <i class="fab fa-whatsapp"></i> Share

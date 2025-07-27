@@ -51,19 +51,19 @@ include('../includes/navbar.php');
             <div class="col-md-4">
                 <div class="text-center p-3">
                     <span class="d-block fw-bold text-primary" style="font-size: 2.5rem; color: #0000ff !important;"><?= $totalTeams ?></span>
-                    <span class="text-muted fw-medium" style="text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">Active Teams</span>
+                    <span class="text-secondary fw-medium" style="text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">Active Teams</span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="text-center p-3">
                     <span class="d-block fw-bold text-primary" style="font-size: 1.5rem; color: #0000ff !important;"><?= htmlspecialchars($leagueName) ?></span>
-                    <span class="text-muted fw-medium" style="text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">League</span>
+                    <span class="text-secondary fw-medium" style="text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">League</span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="text-center p-3">
                     <span class="d-block fw-bold text-primary" style="font-size: 2.5rem; color: #0000ff !important;">2025</span>
-                    <span class="text-muted fw-medium" style="text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">Season</span>
+                    <span class="text-secondary fw-medium" style="text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem;">Season</span>
                 </div>
             </div>
         </div>

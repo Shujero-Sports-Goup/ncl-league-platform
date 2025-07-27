@@ -430,8 +430,8 @@ include('../includes/navbar.php');
     <div class="col-lg-8">
       <div class="card shadow-sm mb-4 border-0">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-          <h5 class="mb-0">
-            <i class="fas fa-trophy me-2"></i>Current League Standings
+          <h5 class="mb-0 text-white">
+            <i class="fas fa-trophy me-2 "></i>Current League Standings
             <span class="badge bg-light text-primary ms-2" id="standings-count"><?= count($standings) ?> teams</span>
           </h5>
           <div class="btn-group" role="group">
